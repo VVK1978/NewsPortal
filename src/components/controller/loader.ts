@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import IArticles from '../interfaces/articles';
 import ISources from '../interfaces/sources';
 
