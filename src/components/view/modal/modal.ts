@@ -1,8 +1,9 @@
 import './modal.css';
 import AppController from '../../controller/controller';
-import AppView from '../appView';
 import ISources from '../../interfaces/sources';
+import getDataFiltered from '../../utils/get-data-filtered';
 import removeChildrenNodes from '../../utils/remove-childrens';
+import AppView from '../appView';
 
 class Modal {
   private controller: AppController;
@@ -24,11 +25,6 @@ class Modal {
     document.querySelector('.modal__sources')?.classList.add('open');
   }
 
-  closeModal() {
-    document.querySelector('.modal__sources')?.classList.remove('open');
-    (document.querySelector('.header__input') as HTMLInputElement).value = '';
-  }
-
   search(data: ISources) {
     document.querySelector('.header__input')?.addEventListener('input', (e: Event) => {
       const target = e.target as HTMLInputElement;
@@ -38,15 +34,9 @@ class Modal {
 
   filter(value: string, data: ISources) {
     const temp: ISources = Object.assign([], data);
-    temp.sources = this.getDataFiltered(value, data);
-    removeChildrenNodes('sources');
+    temp.sources = getDataFiltered(value, data);
+    removeChildrenNodes('.sources');
     this.view.drawSources(temp);
-  }
-
-  getDataFiltered(value: string, data: ISources) {
-    return data.sources.filter((source) => {
-      return source.id.toLowerCase().indexOf(value.toLowerCase()) > -1;
-    });
   }
 }
 

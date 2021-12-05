@@ -5,15 +5,16 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
   "parserOptions": {
-    "ecmaVersion": 11,
     "sourceType": "module",
+    "useJSXTextNode": true,
     "project": "./tsconfig.json"
   },
   "rules": {
     "no-underscore-dangle": "off",
     "no-console": "off",
+    "no-non-null-assertion": 0,
     "import/order": [
       "error",
       {

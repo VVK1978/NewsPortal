@@ -10,7 +10,7 @@ class News {
     news.forEach((item: IItem, idx: number) => {
       const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
-      if (idx % 2) newsClone.querySelector('.news__item')!.classList.add('alt');
+      if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
       const newsMeta = newsClone.querySelector('.news__meta-photo') as HTMLTemplateElement;
       newsMeta.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
       newsClone.querySelector('.news__meta-author')!.textContent = item.author || item.source.name;
@@ -29,6 +29,7 @@ class News {
     });
     document.querySelector('.news')!.innerHTML = '';
     document.querySelector('.news')!.appendChild(fragment);
+    return this;
   }
 }
 

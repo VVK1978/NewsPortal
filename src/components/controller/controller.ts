@@ -1,7 +1,7 @@
 import IArticles from '../interfaces/articles';
 import ISources from '../interfaces/sources';
-import AppLoader from './appLoader';
 import { setChannelNews } from '../utils/store';
+import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
   getSources(callback: (data: ISources) => void) {
@@ -9,7 +9,7 @@ class AppController extends AppLoader {
       {
         endpoint: 'sources',
       },
-      callback,
+      callback
     );
   }
 
@@ -21,7 +21,7 @@ class AppController extends AppLoader {
         const sourceId: string = target.getAttribute('data-source-id')!;
         setChannelNews(sourceId);
         if (newsContainer.getAttribute('data-source') !== sourceId) {
-          newsContainer.setAttribute('data-source', sourceId)! as HTMLElement;
+          (newsContainer.setAttribute('data-source', sourceId)! as unknown) as HTMLElement;
           super.getResp(
             {
               endpoint: 'everything',
@@ -31,7 +31,7 @@ class AppController extends AppLoader {
                 page: `${page}`,
               },
             },
-            callback,
+            callback
           );
         }
         return;
@@ -51,7 +51,7 @@ class AppController extends AppLoader {
           page: `${page}`,
         },
       },
-      callback,
+      callback
     );
   }
 }

@@ -1,8 +1,10 @@
-import { AppView } from './../view/appView';
 import AppController from '../controller/controller';
 import IArticles from '../interfaces/articles';
-import Modal from '../view/modal/modal';
+import closeModal from '../utils/close-modal';
+import disabledEnabledElement from '../utils/disabledEnabled';
+import AppView from '../view/appView';
 import footer from '../view/footer/footer';
+import Modal from '../view/modal/modal';
 
 class App {
   private controller: AppController;
@@ -31,16 +33,14 @@ class App {
   }
 
   start() {
-    document
-      .querySelector('.modal__close')
-      ?.addEventListener('click', () => this.modal.closeModal());
+    document.querySelector('.modal__close')?.addEventListener('click', () => closeModal());
 
-    document.querySelector('.sources')!.addEventListener('click', (e: Event) => {
-      this.modal.closeModal();
+    document.querySelector('.sources')?.addEventListener('click', (e: Event) => {
+      closeModal();
       this.state.page = 1;
       this.controller.getNews((data: IArticles) => this.view.drawNews(data), this.state.page, e);
-      this.disabledEnabledElement('.prev', true);
-      this.disabledEnabledElement('.next', false);
+      disabledEnabledElement('.prev', true);
+      disabledEnabledElement('.next', false);
     });
   }
 
@@ -61,38 +61,33 @@ class App {
       this.state.allPages = +localStorage.getItem('allPages')!;
       this.state.page += 1;
       if (this.state.page > 1) {
-        this.disabledEnabledElement('.prev', false);
+        disabledEnabledElement('.prev', false);
       }
       if (this.state.page === this.state.allPages) {
-        this.disabledEnabledElement('.next', true);
+        disabledEnabledElement('.next', true);
         this.state.page = this.state.allPages;
       }
       this.controller.getNewsPagination(
         (data: IArticles) => this.view.drawNews(data),
-        this.state.page,
+        this.state.page
       );
     }
 
     if (target.id === 'prev') {
       this.state.page -= 1;
       if (this.state.page < 2) {
-        this.disabledEnabledElement('.prev', true);
+        disabledEnabledElement('.prev', true);
         this.state.page = 1;
       }
       if (this.state.page < this.state.allPages) {
-        this.disabledEnabledElement('.next', false);
+        disabledEnabledElement('.next', false);
       }
       this.controller.getNewsPagination(
         (data: IArticles) => this.view.drawNews(data),
-        this.state.page,
+        this.state.page
       );
     }
     this.pagination();
-  }
-
-  disabledEnabledElement(selector: string, isDisabled: boolean) {
-    const element = <HTMLInputElement>document.querySelector(`${selector}`);
-    element.disabled = isDisabled;
   }
 }
 

@@ -1,11 +1,12 @@
-import News from './news/news';
-import Sources from './sources/sources';
 import IArticles from '../interfaces/articles';
 import ISources from '../interfaces/sources';
-import { setLengthNews } from '../utils/store';
+import messageNews from '../utils/messageNews';
 import removeChildrenNodes from '../utils/remove-childrens';
+import { setLengthNews } from '../utils/store';
+import News from './news/news';
+import Sources from './sources/sources';
 
-export class AppView {
+export default class AppView {
   private news: News;
 
   private sources: Sources;
@@ -17,9 +18,9 @@ export class AppView {
 
   drawNews(data: IArticles) {
     if (data.totalResults === 0) {
-      removeChildrenNodes('news');
+      removeChildrenNodes('.news');
       const message = 'Zero news in this channel... Please choose another.';
-      this.messageNews(message);
+      messageNews(message);
     } else {
       setLengthNews(data.totalResults);
       const values = data?.articles ? data?.articles : [];
@@ -29,7 +30,7 @@ export class AppView {
         .split('-')
         .join(' ');
       this.news.draw(values);
-      this.messageNews(message);
+      messageNews(message);
     }
   }
 
@@ -37,14 +38,4 @@ export class AppView {
     const values = data?.sources ? data?.sources : [];
     this.sources.draw(values);
   }
-
-  messageNews(message: string) {
-    const news = <HTMLElement>document.querySelector('.news');
-    const zeroNews = document.createElement('h3') as HTMLElement;
-    zeroNews.classList.add('zero__news');
-    zeroNews.textContent = message;
-    news.prepend(zeroNews);
-  }
 }
-
-export default AppView;
