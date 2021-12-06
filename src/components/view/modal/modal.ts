@@ -26,8 +26,8 @@ class Modal {
   }
 
   search(data: ISources) {
-    document.querySelector('.header__input')?.addEventListener('input', (e: Event) => {
-      const target = e.target as HTMLInputElement;
+    document.querySelector('.header__input')?.addEventListener('input', (event: Event) => {
+      const target = event.target as HTMLInputElement;
       this.filter(target.value, data);
     });
   }

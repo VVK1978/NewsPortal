@@ -47,11 +47,11 @@ class App {
   pagination() {
     document
       .querySelector('.pagination')
-      ?.addEventListener('click', (e: Event) => this.events(e), { once: true });
+      ?.addEventListener('click', (event: Event) => this.events(event), { once: true });
   }
 
-  events(e: Event) {
-    const target = e.target as HTMLElement;
+  events(event: Event) {
+    const target = event.target as HTMLElement;
 
     if (target.id === 'modal') {
       this.modal.openModal();

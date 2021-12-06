@@ -19,7 +19,7 @@ module.exports={
   rules: {
     "no-underscore-dangle": "off",
     "no-console": "off",
-    "no-non-null-assertion": 0,
+    '@typescript-eslint/no-non-null-assertion': 'off',
     "import/order": [
       "error",
       {
