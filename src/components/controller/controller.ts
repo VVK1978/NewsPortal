@@ -1,6 +1,5 @@
-import IArticles from '../interfaces/articles';
-import ISources from '../interfaces/sources';
-import { setChannelNews } from '../utils/store';
+import { IArticles, ISources } from '../interfaces';
+import { setChannelNews } from '../store';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
@@ -13,9 +12,9 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(callback: (data: IArticles) => void, page: number, e: Event) {
-    let target = e.target as HTMLElement;
-    const newsContainer = e.currentTarget as HTMLElement;
+  getNews(callback: (data: IArticles) => void, page: number, event: Event) {
+    let target = event.target as HTMLElement;
+    const newsContainer = event.currentTarget as HTMLElement;
     while (target !== newsContainer) {
       if (target.classList.contains('source__item')) {
         const sourceId: string = target.getAttribute('data-source-id')!;

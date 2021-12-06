@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
@@ -46,6 +47,7 @@ const baseConfig = {
     new ESLintPlugin({
       extensions: ['js', 'ts'],
     }),
+    new Dotenv()
   ],
 };
 

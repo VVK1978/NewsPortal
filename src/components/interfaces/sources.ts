@@ -8,7 +8,7 @@ export type TSources = {
   url: string;
 };
 
-export default interface ISources {
+export interface ISources {
   sources: TSources[];
   status: string;
 }

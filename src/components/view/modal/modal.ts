@@ -1,8 +1,7 @@
 import './modal.css';
 import AppController from '../../controller/controller';
-import ISources from '../../interfaces/sources';
-import getDataFiltered from '../../utils/get-data-filtered';
-import removeChildrenNodes from '../../utils/remove-childrens';
+import { ISources } from '../../interfaces';
+import { getDataFiltered, removeChildrenNodes } from '../../utils';
 import AppView from '../appView';
 
 class Modal {

@@ -1,4 +1,4 @@
-import ISources from '../interfaces/sources';
+import { ISources } from '../interfaces';
 
 export default function getDataFiltered(value: string, data: ISources) {
   return data.sources.filter((source) => {

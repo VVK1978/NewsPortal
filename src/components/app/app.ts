@@ -1,7 +1,6 @@
 import AppController from '../controller/controller';
-import IArticles from '../interfaces/articles';
-import closeModal from '../utils/close-modal';
-import disabledEnabledElement from '../utils/disabledEnabled';
+import { IArticles } from '../interfaces';
+import { closeModal, disabledEnabledElement } from '../utils';
 import AppView from '../view/appView';
 import footer from '../view/footer/footer';
 import Modal from '../view/modal/modal';
@@ -13,7 +12,7 @@ class App {
 
   private modal: Modal;
 
-  private state: {
+  private readonly state: {
     page: number;
     pageSize: number;
     allPages: number;
@@ -35,10 +34,14 @@ class App {
   start() {
     document.querySelector('.modal__close')?.addEventListener('click', () => closeModal());
 
-    document.querySelector('.sources')?.addEventListener('click', (e: Event) => {
+    document.querySelector('.sources')?.addEventListener('click', (event: Event) => {
       closeModal();
       this.state.page = 1;
-      this.controller.getNews((data: IArticles) => this.view.drawNews(data), this.state.page, e);
+      this.controller.getNews(
+        (data: IArticles) => this.view.drawNews(data),
+        this.state.page,
+        event
+      );
       disabledEnabledElement('.prev', true);
       disabledEnabledElement('.next', false);
     });

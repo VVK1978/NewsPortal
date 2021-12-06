@@ -1,21 +1,14 @@
-import IArticles from '../interfaces/articles';
-import ISources from '../interfaces/sources';
-import errorHandler from '../utils/error-handler';
-
-type TOptions = {
-  sources?: string | null;
-  pageSize?: number | null;
-  page?: string | undefined;
-};
+import { IArticles, ISources, TOptions } from '../interfaces';
+import { errorHandler } from '../utils';
 
 class Loader {
-  private baseLink: string;
+  private readonly baseLink: string;
 
-  private options: {
-    apiKey: string;
+  private readonly options: {
+    apiKey: string | undefined;
   };
 
-  constructor(baseLink: string, options: { apiKey: string }) {
+  constructor(baseLink: string, options: { apiKey: string | undefined }) {
     this.baseLink = baseLink;
     this.options = options;
   }

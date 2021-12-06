@@ -1,8 +1,6 @@
-import IArticles from '../interfaces/articles';
-import ISources from '../interfaces/sources';
-import messageNews from '../utils/messageNews';
-import removeChildrenNodes from '../utils/remove-childrens';
-import { setLengthNews } from '../utils/store';
+import { IArticles, ISources } from '../interfaces';
+import { setLengthNews } from '../store';
+import { messageNews, removeChildrenNodes } from '../utils';
 import News from './news/news';
 import Sources from './sources/sources';
 

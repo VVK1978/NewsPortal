@@ -1,11 +1,9 @@
-type TSource = {
-  name: string;
-};
-
 export default interface IItem {
   urlToImage: string;
   author: string;
-  source: TSource;
+  source: {
+    name: string;
+  };
   publishedAt: string;
   title: string;
   description: string;

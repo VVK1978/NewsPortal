@@ -1,20 +1,18 @@
-type TArticle = {
-  id: string;
-  name: string;
-};
-
-type TArticles = {
+export type TArticles = {
   author: string;
   content: string;
   description: string;
   publishedAt: string;
-  source: TArticle;
+  source: {
+    id: string;
+    name: string;
+  };
   title: string;
   url: string;
   urlToImage: string;
 };
 
-export default interface IArticles {
+export interface IArticles {
   articles: TArticles[];
   status: string;
   totalResults: number;

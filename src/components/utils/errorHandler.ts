@@ -1,8 +1,4 @@
-enum ErrorStatusCode {
-  Unauthorized = 401,
-  NotFound = 404,
-  TooManyRequests = 429,
-}
+import ErrorStatusCode from '../enums';
 
 export default function errorHandler(res: Response) {
   if (!res.ok) {

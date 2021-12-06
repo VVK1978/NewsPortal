@@ -1,4 +1,4 @@
-import IItem from '../interfaces/item';
+import { IItem } from '../interfaces';
 
 export default function draw(data: IItem[]) {
   const news = data.length >= 10 ? data.filter((_item: IItem, idx: number) => idx < 21) : data;
